@@ -38,7 +38,14 @@ class Rotor:
         if(spin):
             return self.wirering[(self.RotorPos + inputChar) % 26][1]
         else:
-            return self.backwarts[(self.RotorPos + inputChar) % 26][1]
+            # return self.backwarts[(self.RotorPos + inputChar) % 26][1]
+            for i in range(0,26):
+                if(inputChar == self.wirering[i][1]):
+                    out = self.wirering[i][0]-self.RotorPos
+                    while(out < 0):
+                        out = 26 + out
+                    out = out % 26
+                    return out
 
     def __str__(self):
         return 'RotorNum: ' + str(self.RotorNum) + ' is set to Pos: ' + str(self.RotorPos)
@@ -50,23 +57,4 @@ class ReverseRotor:
 
     def run(self, inputChar):
         return self.reverseRot[inputChar][1]
-
-
-# if __name__ == "__main__":
-#     new = copy.deepcopy(allRotor)
-#     print(new)
-
-#     for k,v in new.items():
-#         for i in v:
-#             # i = sorted(i)
-#             tmp=i[1]
-#             i[1] = i[0]
-#             i[0] = tmp
-#         new[k] = sorted(v,key=itemgetter(0))
-#         # new[k] = v
-
-#     print(new)
-
-
-
 
