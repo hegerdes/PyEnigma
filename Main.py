@@ -19,8 +19,9 @@ rotorTransit = {
 
 class Enigma:
 
-    def __init__(self, RotorNumbers = [], RotorPos = [], Plugboard = []):
+    def __init__(self, RotorNumbers = [], RotorPos = [], PlugSet = []):
         self.rotors = []
+        self.plugsSet = False
         if(len(RotorNumbers) != 3): self.RotorErr()
         usedRotors = []
         for i in RotorNumbers:
@@ -39,8 +40,18 @@ class Enigma:
             if(RotorPos[i] > 25 or RotorPos[i] < 0): self.PosErr()
             self.rotors[i].setPos(RotorPos[i])
 
+        if(len(PlugSet) == 0):
+            self.plugsSet = False
+            PlugSet = []
+            for i in alphabet:
+                PlugSet.append((i,i))
+        else: self.plugsSet = True
+        self.Plugs = Plugboard(PlugSet)
+
+        print(self.Plugs)
         for i in self.rotors:
             print(i)
+
 
 
 

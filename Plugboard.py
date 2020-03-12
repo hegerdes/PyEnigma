@@ -25,7 +25,7 @@ class Plugboard:
         tmp = copy.deepcopy(alphabet)
         random.shuffle(tmp)
 
-        while (len(tmp) > 26- plug_amount):
+        while (len(tmp) > 26 - plug_amount):
             num1 = tmp[random.randint(1, len(tmp)) - 1]
             num2 = tmp[random.randint(1, len(tmp)) - 1]
 
@@ -44,3 +44,6 @@ class Plugboard:
         out = alphabet.index(self.board[alphabet[inputChar]])
         if( out != None): return out
         return inputChar
+
+    def __str__(self):
+        return str(self.board)
