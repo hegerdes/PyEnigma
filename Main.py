@@ -22,8 +22,8 @@ class Enigma:
         self.rotors = []
         self.plugsSet = False
         ReverseRotorNum.upper()
-        if(len(RotorNumbers) != 3):
-            self.RotorErr()
+        if(len(RotorNumbers) != 3): self.RotorErr()
+
         usedRotors = []
         for i in RotorNumbers:
             num = None
@@ -37,8 +37,8 @@ class Enigma:
             else:
                 self.RotorErr()
 
-        if(len(RotorPos) != 3):
-            self.PosErr()
+        if(len(RotorPos) != 3): self.PosErr()
+
         for i in range(3):
             if(RotorPos[i] > 25 or RotorPos[i] < 0):
                 self.PosErr()
@@ -70,14 +70,12 @@ class Enigma:
     def moveRotos(self):
         self.rotors[0].setPos(self.rotors[0].RotorPos + 1)
         if(self.rotors[0].RotorPos == rotorTransit[self.rotors[0].RotorNum]):
-            # print('Switsch1')
             self.rotors[1].setPos(self.rotors[1].RotorPos + 1)
             if(self.rotors[1].RotorPos == rotorTransit[self.rotors[1].RotorNum]):
-                # print('Switsch2')
                 self.rotors[2].setPos(self.rotors[2].RotorPos + 1)
                 if(self.rotors[2].RotorPos == rotorTransit[self.rotors[2].RotorNum]):
                     pass
-                    # print('Switsch3')
+
         for i in self.rotors:
             if(i.RotorPos == 26):
                 i.setPos(0)
@@ -93,15 +91,12 @@ class Enigma:
 
             for rot in self.rotors:
                 current = rot.run(current, True)
-                # print(self.inText(current))
 
             current = self.reverse.run(current)
-            # print(self.inText(current))
 
             self.rotors.reverse()
             for rot in self.rotors:
                 current = rot.run(current, False)
-                # print(self.inText(current))
             self.rotors.reverse()
 
             current = self.Plugs.run(current)
@@ -113,6 +108,14 @@ class Enigma:
 
     def inText(self, index):
         return(alphabet[index])
+
+    def setPlugs(self, Plugs):
+        self.Plugs.setPlugs(Plugs)
+
+    def randomPlugs(self, plug_amount = 26):
+        return self.Plugs.randomPlugs(plug_amount)
+
+
 
     def RotorErr(self):
         print('Err1')

@@ -34,6 +34,7 @@ class Plugboard:
                 self.board[num2] = num1
                 tmp.remove(num1)
                 tmp.remove(num2)
+        return self.board
 
     def setPlugs(self, plugs):
         for i in plugs:
