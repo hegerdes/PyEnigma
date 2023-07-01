@@ -1,13 +1,15 @@
 import random
-import os
 import copy
+import logging
 
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+logger = logging.getLogger("hegerdes::pyenigma")
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 
 class Plugboard:
 
-    def __init__(self, plugs = None):
+    def __init__(self, plugs=None):
         self.board = {}
         for i in alphabet:
             self.board[i] = None
@@ -16,10 +18,9 @@ class Plugboard:
         else:
             self.randomPlugs()
 
-
-    def randomPlugs(self, plug_amount = 26):
-        if(plug_amount%2 != 0):
-            print("Need to be an even number of plugs")
+    def randomPlugs(self, plug_amount=26):
+        if (plug_amount % 2 != 0):
+            logger.error("Need to be an even number of plugs")
             exit(1)
 
         tmp = copy.deepcopy(alphabet)
@@ -43,7 +44,8 @@ class Plugboard:
 
     def run(self, inputChar):
         out = alphabet.index(self.board[alphabet[inputChar]])
-        if( out != None): return out
+        if (out != None):
+            return out
         return inputChar
 
     def __str__(self):
